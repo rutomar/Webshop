@@ -1,0 +1,54 @@
+<div class="container-fluid bg-grey">
+	<div class="col-sm-6 col-sm-offset-3 jumbotron">
+		<p class="text-center">Register</p>
+		<p  ng-show="message" class="alert alert-success">{{ message }}</p>
+		<form name="addUserForm">
+			<div class="row">
+				<div class="form-group">
+					<input class="form-control" ng-model="user.userName" name="name"
+						placeholder="Name" type="text" required>
+				</div>
+				<div class="form-group">
+					<input class="form-control" ng-model="user.userId" name="userId"
+						placeholder="UserID" type="text" required ng-blur="getUserId()">
+					<div ng-show="existingUser" class="alert alert-danger">
+						<strong>Error!</strong> UserId already exists. Choose another.
+					</div>
+
+				</div>
+				<div class="form-group">
+					<input class="form-control" ng-model="user.password"
+						name="password" placeholder="Password" type="password" required>
+				</div>
+
+				<div class="form-group">
+					<input class="form-control" ng-model="user.address.email"
+						name="email" placeholder="abc@domain.com" type="email" required>
+					<div ng-show="addUserForm.email.$error.email" class="alert alert-danger">
+						<strong>Error!</strong> Invalid Email Id.
+					</div>
+				</div>
+				<div class="form-group">
+					<input class="form-control" ng-model="user.address.address"
+						name="address" placeholder="Address" type="text" required>
+				</div>
+				<div class="form-group">
+					<input class="form-control" ng-model="user.address.city"
+						name="city" placeholder="City" type="text" required>
+				</div>
+			</div>
+			<div class="row">
+				<div class="col-sm-12 form-group">
+					<button type="submit" ng-click="register(user)"
+						ng-disabled="addUserForm.$invalid || existingUser"
+						class="btn  btn-success">Register Now</button>
+					<a href="homePage"><button type="button" class="btn btn-default"
+						name="clear">Cancel</button></a>
+				</div>
+			</div>
+		</form>
+	</div>
+</div>
+
+
+
