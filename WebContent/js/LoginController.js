@@ -11,11 +11,11 @@ petSupplies.controller('LoginController', function LoginController($rootScope,
 
 				if (data) {
 					createLoggedInUserObject(data);
-					$location.path("/");
 					console.log('success');
+					$location.path('/product');
 				} else {
 					// populate the rootuser
-					//console.log(data);
+					// console.log(data);
 					console.log('failed');
 				}
 
@@ -25,8 +25,6 @@ petSupplies.controller('LoginController', function LoginController($rootScope,
 
 		}
 	};
-
-	
 
 	function createLoggedInUserObject(data) {
 		$rootScope.activeUser = {

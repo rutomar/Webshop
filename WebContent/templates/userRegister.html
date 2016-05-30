@@ -1,7 +1,11 @@
+<div class="jumbotron text-center">
+	<h1></h1>
+</div>
+
 <div class="container-fluid bg-grey">
 	<div class="col-sm-6 col-sm-offset-3 jumbotron">
 		<p class="text-center">Register</p>
-		<p  ng-show="message" class="alert alert-success">{{ message }}</p>
+		<h3  ng-show="message" class="alert alert-success">{{ message }}</h3>
 		<form name="addUserForm">
 			<div class="row">
 				<div class="form-group">
@@ -42,8 +46,8 @@
 					<button type="submit" ng-click="register(user)"
 						ng-disabled="addUserForm.$invalid || existingUser"
 						class="btn  btn-success">Register Now</button>
-					<a href="homePage"><button type="button" class="btn btn-default"
-						name="clear">Cancel</button></a>
+					<button type="button" class="btn btn-default"
+						name="clear" ng-click="clear()">Cancel</button>
 				</div>
 			</div>
 		</form>

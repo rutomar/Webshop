@@ -9,12 +9,12 @@ petSupplies.controller("AddUserController", function AddUserController(
 			user.address.userId = user.userId;
 			console.log('service is up');
 
-			$http.post($rootScope.webserviceuri + "/newUserAccount",
+			$http.post($rootScope.webserviceuri + "/user",
 					data.createUserObject(user)).success(function(response) {
 				console.log(response);
 				if (response)
 					$scope.message = "User Registered Successfully!";
-		
+
 			}).error(function(data, status, headers, config) {
 				console.log(status);
 			});
@@ -52,5 +52,23 @@ petSupplies.controller("AddUserController", function AddUserController(
 			});
 		}
 	};
-	
+
+	$scope.clear = function() {
+		$scope.user = {
+			userId : '',
+			userName : '',
+			password : '',
+			address : {
+				userId : '',
+				address : '',
+				emailId : '',
+				city : ''
+			}
+		};
+
+		$scope.addUserForm.$setPristine(); // reset Form
+
+		$location.path("/product"); // go to home page listed products
+	};
+
 });

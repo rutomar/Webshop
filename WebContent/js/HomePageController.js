@@ -29,31 +29,71 @@ petSupplies
 											$rootScope.message = "Service is temporarily unavialble. Please try again later."
 											console.log("Pintnig message"
 													+ message);
-										}
+										} else
+											init();
 									});
 
-					$scope.init = function() {
+					var init = function() {
 						if ($scope.serviceStarted) {
-							$http.get(webserviceuri + "/getProducts").success(
-									function(data) {
-										$scope.products = data.ProductsList;
-
-									});
+							console.log('inside init');
+							// get Categories
 							$http
-									.get(webserviceuri + "/getCategories")
-									.success(
-											function(data) {
-												$scope.productsByCategories = data.branch;
-
+									.get($rootScope.webserviceuri + '/category')
+									.success(function(data) {
+										$rootScope.categories = data;
+										console.log('Categories found.');
+									})
+									.error(
+											function() {
+												console
+														.error('Error while fetching categories');
 											});
 
+							// get products
+							$http
+									.get($rootScope.webserviceuri + '/product')
+									.success(function(data) {
+										$rootScope.products = data;
+										console.log('Products found.');
+									})
+									.error(
+											function() {
+												console
+														.error('Error while fetching products');
+											});
+							console.log('navigating to product');
+							$location.path("/product");
 						}
 					};
-					
-					$scope.logout = function() {
-						$rootScope.activeUser = {};
-						$location.path("/");
 
+					$scope.getCatProds = function(categoryCode) {
+						$http.get(
+								$rootScope.webserviceuri + '/productCategory',
+								{
+									params : {
+										categoryCode : categoryCode
+									}
+								}).success(function(data) {
+							console.log('getting product ' + categoryCode);
+							if (data) {
+								$rootScope.products = data;
+								$rootScope.categorySelected = categoryCode;
+								$location.path("/product");
+							}
+						}).error(function(data, status, headers, config) {
+							console.log(status);
+							return false;
+						});
+					};
+
+					$scope.getProducts = function() {
+						init();
+						$rootScope.categorySelected = '';
+					};
+
+					$scope.logout = function() {
+						$rootScope.activeUser = null;
+						$location.path("/product");
 					};
 
 				});
