@@ -1,0 +1,89 @@
+<div class="container">
+	<div class="row"></div>
+</div>
+
+<section id="checkout">
+	<div class="container">
+		<div class="row">
+			<div class="col-md-12">
+				<div class="checkout-area">
+					<div class="row">
+						<div class="col-md-6">
+							<div class="checkout-left">
+								<div class="panel-group" id="accordion">
+									<!-- Coupon section -->
+									<div class="panel panel-default aa-checkout-coupon">
+										<div class="panel-heading">
+											<h4 class="panel-title">Order Summary</h4>
+										</div>
+										<div id="orderSummary">
+											<div class="panel-body">
+
+												<div class="aa-order-summary-area">
+													<table class="table table-responsive">
+														<thead>
+															<tr>
+																<th>Product</th>
+																<th>Total</th>
+															</tr>
+														</thead>
+														<tbody>
+															<tr ng-repeat="p in cartItems">
+																<td>{{p.productName}}<strong> x
+																		{{p.quantity}}</strong></td>
+																<td>{{p.productPrice * p.quantity |
+																	currency:'&#8377;'}}</td>
+															</tr>
+
+														</tbody>
+														<tfoot>
+															<tr>
+																<th>Total</th>
+																<td ng-bind="{{$rootScope.cartTotal}}"></td>
+															</tr>
+														</tfoot>
+													</table>
+													<div class="col-md-4">
+														<div class="checkout-right">
+															<input type="submit" value="Place Order"
+																class="aa-browse-btn">
+														</div>
+													</div>
+												</div>
+											</div>
+										</div>
+									</div>
+								</div>
+							</div>
+						</div>
+						<div class="col-md-6">
+							<div class="checkout-left">
+								<div class="panel-group" id="accordion">
+									<!-- Coupon section -->
+									<div class="panel panel-default aa-checkout-coupon">
+										<div class="panel-heading">
+											<h4 class="panel-title">Shipping Address</h4>
+											<br>
+										</div>
+										<div id="shippingAddress">
+											<div class="panel-body">
+												<div class="aa-order-summary-area">
+													<label>{{activeUser.userName}} </label>
+													<label>{{activeUser.address.address}} , </label>
+													<label>{{activeUser.address.city }} , </label> 
+													
+													<label>{{activeUser.adderss.emailId}}</label>
+												</div>
+											</div>
+										</div>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</section>
+<!-- / Cart view section -->

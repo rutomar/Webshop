@@ -2,6 +2,8 @@
 petSupplies.controller('LoginController', function LoginController($rootScope,
 		$scope, $http, $location) {
 
+	$rootScope.cartTotal = 0;
+
 	$scope.login = function() {
 		console.log("inside login");
 		if ($scope.serviceStarted && $scope.userId && $scope.password) {
@@ -13,9 +15,10 @@ petSupplies.controller('LoginController', function LoginController($rootScope,
 					createLoggedInUserObject(data);
 					console.log('success');
 					$location.path('/product');
+					//getCartItems($scope.userId);
+
 				} else {
-					// populate the rootuser
-					// console.log(data);
+
 					console.log('failed');
 				}
 
@@ -26,6 +29,20 @@ petSupplies.controller('LoginController', function LoginController($rootScope,
 		}
 	};
 
+	/*var getCartItems = function(userId) {
+
+		$http.get($rootScope.webserviceuri + '/cart/' + userId).success(
+				function(data) {
+					console.log(data);
+					if (data) {
+						$rootScope.cartItems = data;
+					}
+				}).error(function(data, status, headers, config) {
+			console.log(status);
+		});
+
+	};
+*/
 	function createLoggedInUserObject(data) {
 		$rootScope.activeUser = {
 			userId : data.userId,

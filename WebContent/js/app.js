@@ -4,8 +4,8 @@ var petSupplies = angular.module('petSupplies', [ 'ngRoute', 'ngResource' ]);
 petSupplies.config(function($routeProvider, $locationProvider) {
 
 	$routeProvider.when('/logout', {
-		templateUrl : 'index.html',
-		controller : 'HomePageController'
+		templateUrl : 'templates/logout.html',
+		controller : 'LogoutController'
 	}).when('/product', {
 		templateUrl : 'templates/products.html',
 		controller : 'ProductsController'
@@ -18,6 +18,9 @@ petSupplies.config(function($routeProvider, $locationProvider) {
 	}).when('/cart', {
 		templateUrl : 'templates/cart.html',
 		controller : 'CartController'
+	}).when('/checkout', {
+		templateUrl : 'templates/checkout.html',
+		controller : 'CheckoutController'
 	});
 
 	$locationProvider.html5Mode(true);

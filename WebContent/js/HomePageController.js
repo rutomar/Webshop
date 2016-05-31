@@ -93,7 +93,8 @@ petSupplies
 
 					$scope.logout = function() {
 						$rootScope.activeUser = null;
-						$location.path("/product");
+						$scope.message = 'User logged out successfully';
+						$location.path('/logout');
 					};
 
 				});

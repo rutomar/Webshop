@@ -1,7 +1,7 @@
 'use strict';
 
 petSupplies.controller('ProductsController', function($rootScope, $scope,
-		$location, $http) {
+		$location, $http, $window) {
 
 	var cartUri = $rootScope.webserviceuri + '/cart/';
 
@@ -16,22 +16,21 @@ petSupplies.controller('ProductsController', function($rootScope, $scope,
 			console.log('active user true for ading to cart');
 
 			productQuantity = 1;
+
 			$http.post(cartUri, data.createCartItem(product)).success(
 					function(data) {
 						console.log(data);
-
 						if (data) {
 							$scope.message = "Product Added to Cart";
 							console.log('userID '
 									+ $rootScope.activeUser.userId)
 							$scope.fetchAllItems($rootScope.activeUser.userId);
+							$window.alert($scope.message);
 						}
 
 					}).error(function(data, status, headers, config) {
 				console.log(status);
 			});
-
-			console.log($rootScope.cart + 'Items Added to the cart');
 
 		} else {
 			alert('Kindly login to purchase.');
@@ -51,8 +50,6 @@ petSupplies.controller('ProductsController', function($rootScope, $scope,
 		});
 
 	};
-
-	// $scope.fetchAllItems($rootScope.activeUser.userId);
 
 	var data = {
 		createCartItem : function(product) {
